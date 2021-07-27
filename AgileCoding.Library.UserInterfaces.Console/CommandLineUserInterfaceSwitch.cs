@@ -2,18 +2,18 @@
 {
     using AgileCoding.Extentions.Loggers;
     using AgileCoding.Library.Interfaces.Logging;
+    using AgileCoding.Library.Interfaces.UserInterfaces.Console;
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using AgileCoding.Library.Interfaces.UserInterfaces.Console;
 
     public class CommandLineUserInterfaceSwitch : ICommandLineUserInterfaceSwitch
     {
-        private ILogger logger;
+        public ILogger Logger { get; set; }
 
         public CommandLineUserInterfaceSwitch(ILogger logger, string[] helpKeys, char?[] preFixChars, Func<string> helpStringFunction)
         {
-            this.logger = logger;
+            this.Logger = logger;
             HelpKeys = helpKeys.ToList();
             HelpDescriptionStringFunction = helpStringFunction;
             PreFixChars = preFixChars.ToList();
@@ -49,22 +49,22 @@
                     preFIxString = $"!{preFIxString}";
                 }
 
-                logger.WriteInformation($"It seems no userinterface was select. Please use any of the following help command(s):{Environment.NewLine}");
-                logger.WriteInformation($"{AppDomain.CurrentDomain.FriendlyName} {preFIxString}[{string.Join("|", HelpKeys.ToArray())}]");
+                Logger.WriteInformation($"It seems no userinterface was select. Please use any of the following help command(s):{Environment.NewLine}");
+                Logger.WriteInformation($"{AppDomain.CurrentDomain.FriendlyName} {preFIxString}[{string.Join("|", HelpKeys.ToArray())}]");
 
                 return;
             }
 
             if (HelpKeysWithPrefixAdded.Any(x => x.Equals(args[0], HelpKeyNameCaseComparrer)))
             {
-                logger.WriteInformation(HelpDescriptionStringFunction());
+                Logger.WriteInformation(HelpDescriptionStringFunction());
                 return;
             }
 
 
             if (!UserInterfaces.Any(x => x.InterfaceName.ToLower().Equals(args[0], x.InterfaceCaseComparrer)))
             {
-                logger.WriteInformation($"No userinterface defined with the name '{args[0]}'");
+                Logger.WriteInformation($"No userinterface defined with the name '{args[0]}'");
                 return;
             }
 
@@ -73,11 +73,11 @@
             if (selectedUserInterface != null)
             {
                 selectedUserInterface.ProcessCommandLineArgs(args);
-                selectedUserInterface.DoWork(logger);
+                selectedUserInterface.DoWork(Logger);
             }
             else
             {
-                logger.WriteError("I tested earlier and found a function operation but now I dont anymore. I was not expecting this error to happen at all.");
+                Logger.WriteError("I tested earlier and found a function operation but now I dont anymore. I was not expecting this error to happen at all.");
             }
         }
 

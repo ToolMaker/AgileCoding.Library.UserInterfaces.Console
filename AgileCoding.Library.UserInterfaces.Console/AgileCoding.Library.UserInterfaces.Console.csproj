@@ -40,8 +40,8 @@
     <Reference Include="AgileCoding.Library.Interfaces, Version=1.0.0.2, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\AgileCoding.Library.Interfaces.1.0.0.2\lib\net472\AgileCoding.Library.Interfaces.dll</HintPath>
     </Reference>
-    <Reference Include="AgileCoding.Library.UserInterfaces.Console.Interfaces, Version=1.0.0.5, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AgileCoding.Library.Interfaces.UserInterfaces.Console.1.0.0.5\lib\net472\AgileCoding.Library.UserInterfaces.Console.Interfaces.dll</HintPath>
+    <Reference Include="AgileCoding.Library.UserInterfaces.Console.Interfaces, Version=1.0.0.6, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AgileCoding.Library.Interfaces.UserInterfaces.Console.1.0.0.6\lib\net472\AgileCoding.Library.UserInterfaces.Console.Interfaces.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
